@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mood-Based Playlist Generator</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Mood-Based Playlist Generator</h1>
+        <form method="POST">
+            <label for="mood">Enter your current mood:</label>
+            <input type="text" id="mood" name="mood" placeholder="e.g., happy, sad, energetic, relaxed" required>
+            <button type="submit">Generate Playlist</button>
+        </form>
+
+        {% if playlist %}
+            <h2>Playlist for '{{ mood|capitalize }}' Mood:</h2>
+            <ul>
+                {% for song in playlist %}
+                    <li><a href="{{ song.link }}" target="_blank">{{ song.title }}</a></li>
+                {% endfor %}
+            </ul>
+        {% elif mood %}
+            <p class="error">Sorry, we don't have a playlist for '{{ mood }}' mood.</p>
+        {% endif %}
+    </div>
+</body>
+</html>
