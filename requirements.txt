@@ -1,4 +1,4 @@
-Flask
+Flask==2.2.5  # or a newer version, if available
 blinker==1.8.1
 click==8.1.7
 #flask= 3.0.3
